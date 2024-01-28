@@ -13,10 +13,12 @@ describe('Desafio Trinca', () => {
     
   it('Não permitir cadastrar uma conta existente', () => {
     
+    // Email cadastrado para validação do desafio de conta existente
     const emailExistente = 'eduardo.racovski@gmail.com';
 
     criarConta(emailExistente, "tester123");
     
+    // Asserção para verificar se houve uma falha no cadastro
     cy.get('.go2072408551')
       .should('not.be.visible')
       .and('not.contain', 'Falha ao realizar cadastro');
@@ -35,7 +37,7 @@ describe('Desafio Trinca', () => {
   });
 
   function criarConta(email, senha) {
-    // Preenchendo os campos do Cadastro
+    // Preenchendo os campos de email e senha do Cadastro
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="password"]').type(senha);
 
