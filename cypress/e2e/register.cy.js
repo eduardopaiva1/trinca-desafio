@@ -8,20 +8,27 @@ describe('Desafio Trinca', () => {
   });
 
   it('Deverá ser possível Cadastrar uma Nova Conta com Sucesso', () => {
-    criarConta("eduardo.racovski@gmail.com", "tester123")
+    criarConta("eduardo.paiva", "tester123");
+
+    // Asserção que verifica se o cadastro foi realizado com sucesso
+    cy.get('.go2072408551')
+      .should('be.visible')
+      .and('contain', 'Cadastro realizado com sucesso. Faça seu login!');
+
+    cy.wait(2000);
   });
     
   it('Não permitir cadastrar uma conta existente', () => {
     
-    // Email cadastrado para validação do desafio de conta existente
+    // Email com uma conta registrada
     const emailExistente = 'eduardo.racovski@gmail.com';
 
-    criarConta(emailExistente, "tester123");
+    criarContaExist(emailExistente, "tester123");
     
-    // Asserção para verificar se houve uma falha no cadastro
+    // Assertion que verifica se irá alertar o usuário caso o email seja existente
     cy.get('.go2072408551')
-      .should('not.be.visible')
-      .and('not.contain', 'Falha ao realizar cadastro');
+      .should('be.visible')
+      .and('contain', 'Falha ao realizar cadastro');
 
     });
   
@@ -36,7 +43,20 @@ describe('Desafio Trinca', () => {
       .and('contain', 'Required field');
   });
 
-  function criarConta(email, senha) {
+  // Função que itera um número aleatório para sempre criar uma conta nova
+  function criarConta(prefixoEmail, senha) {
+      const iteracao = Math.floor(Math.random() * (20 - 2 + 1) + 25);
+      const email = `${prefixoEmail}${iteracao}@gmail.com`;
+  
+      // Preenchendo os campos do Cadastro
+      cy.get('input[name="email"]').type(email);
+      cy.get('input[name="password"]').type(senha);
+  
+      // Clicar no Botão de cadastro
+      cy.get('button[type="submit"]').click();
+  }
+
+  function criarContaExist(email, senha) {
     // Preenchendo os campos de email e senha do Cadastro
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="password"]').type(senha);
