@@ -11,7 +11,7 @@ describe('Desafio Trinca', () => {
   it('Deve ser possível logar na aplicação com uma conta cadastrada.', () => {
 
     logarConta("eduardo.racovski@gmail.com", "tester123")
-    cy.wait(2000);
+    cy.wait(3000);
  });
 
  it('Campo de login deve ser obrigatório e exibir esta informação para o usuário.', () => {

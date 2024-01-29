@@ -15,7 +15,7 @@ describe('Desafio Trinca', () => {
       .should('be.visible')
       .and('contain', 'Cadastro realizado com sucesso. Faça seu login!');
 
-    cy.wait(2000);
+    cy.wait(3000);
   });
     
   it('Não permitir cadastrar uma conta existente', () => {
@@ -45,7 +45,7 @@ describe('Desafio Trinca', () => {
 
   // Função que itera um número aleatório para sempre criar uma conta nova
   function criarConta(prefixoEmail, senha) {
-      const iteracao = Math.floor(Math.random() * (20 - 2 + 1) + 25);
+      const iteracao = Math.floor(Math.random() * (20 - 2 + 1) + 60);
       const email = `${prefixoEmail}${iteracao}@gmail.com`;
   
       // Preenchendo os campos do Cadastro

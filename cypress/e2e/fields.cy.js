@@ -37,6 +37,8 @@ describe('Desafio Trinca', () => {
     preencherEvento(opcaoEscolhida.title, opcaoEscolhida.price, opcaoEscolhida.date, opcaoEscolhida.observations);
 
     cy.contains('Salvar evento').click();
+
+    cy.wait(3000);
   });
 
   it('Todos os campos do formulário de cadastro de eventos devem ser obrigatórios, com exceção do campo "Observações".', () => {
