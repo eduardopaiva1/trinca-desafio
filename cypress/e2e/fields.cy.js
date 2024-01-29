@@ -12,6 +12,8 @@ describe('Desafio Trinca', () => {
     // Entrar em Eventos
     cy.get('[href="/eventos"]').click();
 
+    cy.contains('Cadastrar novo evento').click();
+
     // Função para Preenchimento dos campos do Evento
     function preencherEvento(title, price, date, observations) {
       cy.get('input[name="title"]').type(title);
@@ -51,9 +53,7 @@ describe('Desafio Trinca', () => {
     cy.get(':nth-child(2) > .text-md')
     .should('be.visible')
     .and('contain', 'Campo obrigatório');
-
-    //#TODO -> Fazer uma validação (asserção) do campo zerado
-
+  
     //Data obrigatória
     cy.get(':nth-child(4) > .text-md')
     .should('be.visible')
@@ -73,6 +73,9 @@ describe('Desafio Trinca', () => {
     cy.get('input[name="price"]').clear().type(200)
     cy.get('input[name="date"]').clear().type("2024-01-30")
     cy.get('textarea[name="observations"]').clear().type('3 Kgs de Picanha, para assar no capricho')
+
+    // Asserção para que o custo nunca seja 0
+    cy.get('input[name="price"]').should('not.have.value', '0');
 
     cy.contains('Salvar evento').click();
    })
