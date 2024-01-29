@@ -39,6 +39,9 @@ OU
 ```bash
 $ npx cypress run
 ```
+## Link para as Melhorias UI/UX
+
+<a href="https://docs.google.com/document/d/1k5occaX86MaLdeUXnXfi7rT5TaPNiH5x560M3dWgGN0/edit?usp=sharing">Melhorias UI/UX</a>
 
 ##
 Automação Feita por <a href="https://www.linkedin.com/in/eduardo-racovski-455b7792/">Eduardo Paiva</a>
